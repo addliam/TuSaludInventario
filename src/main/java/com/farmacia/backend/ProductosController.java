@@ -13,13 +13,21 @@ import java.util.List;
 public class ProductosController {
     private Connection conn;
 
+    
     public ProductosController() {
         conn = new DbConfig().getConn();
     }
 
+    /**
+    * Retorna un List<String[]> los siguientes campos de todos los productos:
+    * Producto_id, Producto_nombre, Producto_precio_compra, Categoria_id,
+    * Producto_stock_actual, Producto_unidad_medida, Producto_cantidad_unidades
+    * Deber ser usado en una sentencia try catch para manejo de errores
+    * @param  
+    * @return List<String[]>
+    */
     public List<String[]> getBasicInfoProducts(){
         List<String[]> allProductsList = new ArrayList<String[]>();
-//        Object[] arrayObject = null;
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select Producto_id, Producto_nombre, Producto_precio_compra, Categoria_id, Producto_stock_actual, Producto_unidad_medida, Producto_cantidad_unidades from productos");
@@ -45,6 +53,19 @@ public class ProductosController {
         return allProductsList;
     }
     
+    /**
+    * Actualiza la informacion de un producto
+    * Producto_id, Producto_nombre, Producto_precio_compra, Categoria_id,
+    * Producto_stock_actual, Producto_unidad_medida, Producto_cantidad_unidades
+    * Deber ser usado en una sentencia try catch
+    * @param  productoNombre El nombre del producto actualizado
+    * @param  productoDescripcion La descripcion del producto actualizada
+    * @param  productoPrecioCompra El precio de compra del producto actualizado
+    * @param  categoriaId El id de la categoria del producto actualizado
+    * @param  productoStockActual Stock actual del producto actualizado. Se deben considerar efectos no deseados
+    * @param  productoUnidadMedida Unidad de medida del producto actualizado
+    * @param productoCantidadUnidades Cantidad de unidades de medida del producto actualizado
+    */    
     public void updateProductInformationById(String productoNombre, String productoDescripcion, float productoPrecioCompra, int categoriaId, int productoStockActual, String productoUnidadMedida, int productoCantidadUnidades){
         int i=0;
         try {
@@ -54,6 +75,14 @@ public class ProductosController {
         }
     }
     
+    /**
+    * Retorna un String[] con los siguientes campos de todos los productos:
+    * Producto_id, Producto_nombre, Producto_descripcion,  Producto_precio_compra,
+    * Categoria_id, Producto_unidad_medida, Producto_cantidad_unidades
+    * Deber ser usado en una sentencia try catch para manejo de errores
+    * @param  productoCodigo El codigo o id del producto a buscar
+    * @return String[]
+    */
     public String[] getProductInfoByID(String productoCodigo){
         String [] productInfo = new String[7];
         // TODO: code here
@@ -80,6 +109,14 @@ public class ProductosController {
         return productInfo;
     }
     
+    /**
+    * Retorna un String[] con los siguientes campos de todos los productos:
+    * Producto_id, Producto_nombre, Producto_descripcion,  Producto_precio_compra,
+    * Categoria_id, Producto_unidad_medida, Producto_cantidad_unidades
+    * Deber ser usado en una sentencia try catch para manejo de errores
+    * @param
+    * @return String[]
+    */    
     public String[] getProductNameIdPairs(){
         String[] allProductsNameIdPairsArray = null;
         List<String> allProductsNameIdPairsList = new ArrayList<String>();
@@ -99,7 +136,13 @@ public class ProductosController {
         return allProductsNameIdPairsArray;
     }
     
-    // return exit code 0 sucess
+    /**
+    * Inserta un nuevo producto a la base de datos, requiere los siguientes campos
+    * String productoNombre, String productoDescripcion, float productoPrecioCompra,
+    * int categoriaId, int productoStockActual, String productoUnidadMedida, int productoCantidadUnidades
+    * @param  productoNombre El nombre del nuevo producto
+    * @return 0 operacion exitosa, 1 operacion fallida
+    */    
     public int insertNewProduct(String productoNombre, String productoDescripcion, float productoPrecioCompra, int categoriaId, int productoStockActual, String productoUnidadMedida, int productoCantidadUnidades){
         int exitCode = 1;
         try {

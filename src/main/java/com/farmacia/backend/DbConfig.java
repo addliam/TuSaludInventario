@@ -28,6 +28,7 @@ public class DbConfig {
                 System.out.println("DOT ENV package error"+e);
             }
             String urlConnectionString = "jdbc:mysql://localhost:3306/inventario_farmacia";
+//            String urlConnectionString = "jdbc:mysql://161.129.181.5:80/inventario_farmacia";            
             conn = DriverManager.getConnection(urlConnectionString, usernameConnectionString, passwordConnectionString);
         } catch (SQLException ex) {
             System.out.println("An error ocurred while connection to database MySql.");

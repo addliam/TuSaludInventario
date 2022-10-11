@@ -34,6 +34,14 @@ public class User {
         return sb.toString();
     }    
     
+    /**
+    * Retorna un usuario con campos vacios en caso la autenticacion falla 
+    * Retorna un AuthenticatedUser objeto si la autenticacion es exitosa
+    * Este metodo requiere la libreria MessageDigest para la encriptacion
+    * @param  username nombre de usuario a autenticar
+    * @param  password contrasena a autenticar
+    * @return      AuthenticatedUser
+    */
     public AuthenticatedUser authenticate(String username,String password){
         // returns and authenticated user obj if success, else null
         String hashedPasswd = convertirSHA256(password);
