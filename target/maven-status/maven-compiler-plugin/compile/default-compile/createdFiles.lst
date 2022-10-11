@@ -1,0 +1,5 @@
+com\farmacia\backend\AuthenticatedUser.class
+com\farmacia\backend\DbConfig.class
+com\farmacia\backend\User.class
+com\farmacia\tusaludinventario\TuSaludInventario.class
+com\farmacia\backend\ProductosController.class
